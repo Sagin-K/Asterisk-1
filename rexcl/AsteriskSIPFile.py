@@ -4,9 +4,11 @@ from Parser import Parser
 
 class AsteriskSIPFile:
     _gateway_t = Template('[sip-$gw]\n'
-                         'context=rly\nqualify=yes\n'
-                         'type=friend\ndisallow=all\n'
+                         'context=rly\nqualify=no\n'
+                         'type=peer\ndisallow=all\n'
+                         'insecure=invite\ncanreinvite=no\n'
                          'allow=alaw\nallow=ulaw\nallow=gsm\n'
+                         'allow=g729\n'
                          'host=$ip\n\n')
                          
     phone_t = Template('[$rly_no]\ntype=friend\nsecret=$secret\n'
@@ -37,10 +39,12 @@ class AsteriskSIPFile:
                        'setvar=CLI_PSTN="$disp_name"<$pstn_no>\n\n')
 
     siptrunk_t = Template('[sip-$reg_name]\n'
-                           'context=rly\nqualify=yes\n'
-                           'type=friend\ndisallow=all\n'
-                           'allow=alaw\nallow=ulaw\nallow=gsm\n'
-                           'host=$reg_ip\n\n')
+                        'context=rly\nqualify=no\n'
+                        'type=peer\ndisallow=all\n'
+                        'insecure=invite\ncanreinvite=no\n'
+                        'allow=alaw\nallow=ulaw\nallow=gsm\n'
+                        'allow=g729\n'
+                        'host=$reg_ip\n\n')
 
 
     def __init__(self, reg_lst, phone_lst):
