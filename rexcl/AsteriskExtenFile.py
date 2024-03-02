@@ -310,6 +310,7 @@ class AsteriskExtenFile:
                 
                 # Now generate rly context
             self.__write_files(fp, fs, ip_s, "[rly]\n")
+            self.__write_files(fp, fs, ip_s, "include => outgoing\n")
             #print(self.phone_lst)
             for ph in self.phone_lst:
                 if ph['reg'] == reg:
